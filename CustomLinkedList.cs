@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedListDataStructureAssignments
 {
-    internal class CustomLinkedList<T>
+    internal class CustomLinkedList<T> where T : IComparable
     {
         public Node<T> head; // Creatind head if linked list
         public void AddFirst(T data) // creating generic method to Add element at first of linked list
@@ -59,7 +59,7 @@ namespace LinkedListDataStructureAssignments
                 Console.WriteLine($"{newNode.data} is appended in linked list");
             }
         }
-        public void insertBetween(Node<T> prevNode, T data, Node<T> nextNode)
+        public void insertBetween(Node<T> prevNode, T data, Node<T> nextNode) // creating generic method to Add element between two nodes
         {
             if (prevNode == null && nextNode == null) //Check if the given Node is null
             {
@@ -72,7 +72,7 @@ namespace LinkedListDataStructureAssignments
             //this.head = prevNode;
             Console.WriteLine($"{newNode.data} is inserted between {prevNode.data} and {nextNode.data} in linked list");
         }
-        public void DeleteAtfirst()
+        public void DeleteAtFirst() // creating generic method to delete element at first of linked list
         {
             if (this.head == null) //Checking that list is empty or not
             {
@@ -83,7 +83,7 @@ namespace LinkedListDataStructureAssignments
             Console.WriteLine($"\nNow deleting {temp.data} ....");
             this.head = this.head.next;  // Deleting a first node  
         }
-        public void DeleteAtLast()
+        public void DeleteAtLast() // creating generic method to delete element at last of linked list
         {
             Node<T> temp = this.head; // Creating a temp node having head reference
             if (temp == null) //Checking that list is empty or not
@@ -96,15 +96,31 @@ namespace LinkedListDataStructureAssignments
                 Console.WriteLine($"\nNow deleting {temp.data} ....");
                 return;
             }
-
             while (temp.next.next != null) // Checking that list having atleast 2 nodes
             {
                 temp = temp.next; // Go to next node
             }
             Console.WriteLine($"\nNow deleting {temp.next.data} ....");
             temp.next = null; // Deleting a last node       
-
         }
-
+        public void Search(T data)
+        {
+            Node<T> temp = this.head; // Creating a temp node having head reference
+            if (temp == null) //Checking that list is empty or not
+            {
+                Console.WriteLine("\nLinked List is Empty");
+                return;
+            }
+            while (temp != null)
+            {
+                if (data.Equals(temp.data)) // Comparing linked list data to check that element is present or not
+                {
+                    Console.WriteLine($"\n{data} is present in linked list");
+                    return;
+                }
+                temp = temp.next; // Moving to next node
+            }
+            Console.WriteLine($"\n{data} is not present in linked list");
+        }
     }
 }
