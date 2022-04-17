@@ -12,14 +12,14 @@ namespace LinkedListDataStructureAssignments
         public void AddFirst(T data) // creating generic method to Add element at first of linked list
         {
             Node<T> newNode = new Node<T>(data); // Creating a new node 
-            if (head == null)
+            if (this.head == null)
             {
-                head = newNode; // If head pointing to null then hode is directly pointing to new node
+                this.head = newNode; // If head pointing to null then hode is directly pointing to new node
                 Console.WriteLine($"{newNode.data} is inserted at first of linked list");
                 return;
             }
             newNode.next = this.head; // newnode pointing to where head is currently pointing
-            head = newNode; // head is pointing to new node
+            this.head = newNode; // head is pointing to new node
             Console.WriteLine($"{newNode.data} is inserted at first of linked list");
         }
         public void DisplayElement() // creating generic method to display element at first of linked list
@@ -42,9 +42,9 @@ namespace LinkedListDataStructureAssignments
         public void Append(T data) // creating generic method to Add element at first of linked list
         {
             Node<T> newNode = new Node<T>(data); // Creating a new node 
-            if (head == null)
+            if (this.head == null)
             {
-                head = newNode; // If head pointing to null then hode is directly pointing to new node
+                this.head = newNode; // If head pointing to null then hode is directly pointing to new node
                 Console.WriteLine($"{newNode.data} is appended in linked list");
                 return;
             }
@@ -69,8 +69,22 @@ namespace LinkedListDataStructureAssignments
             Node<T> newNode = new Node<T>(data); // Allocate the Node & Put in the data          
             newNode.next = nextNode; // Make next of new Node as next of prev_node
             prevNode.next = newNode; //make next of prev_node as new_node
-            head = prevNode;
+            //this.head = prevNode;
             Console.WriteLine($"{newNode.data} is inserted between {prevNode.data} and {nextNode.data} in linked list");
         }
+        public void DeleteAtfirst()
+        {
+            if (this.head == null)
+            {
+                Console.WriteLine("Linked List is already Empty");
+                return;
+            }
+            Node<T> temp = this.head;
+            Console.WriteLine($"\nNow deleting {temp.data} ....");
+            this.head = this.head.next;
+
+
+        }
+
     }
 }
