@@ -122,5 +122,27 @@ namespace LinkedListDataStructureAssignments
             }
             Console.WriteLine($"\n{data} is not present in linked list");
         }
+        public void InsertElement(T prevData, T newElement)
+        {
+            Node<T> temp = this.head; // Creating a temp node having head reference
+            if (temp == null) //Checking that list is empty or not
+            {
+                Console.WriteLine("\nLinked List is Empty");
+                return;
+            }
+            Node<T> newNode = new Node<T>(newElement);
+
+            while (temp != null)
+            {
+                if (prevData.Equals(temp.data)) // Comparing linked list data to check that element is present or not
+                {
+                    newNode.next = temp.next;
+                    temp.next = newNode;
+                    Console.WriteLine($"\n{newNode.data} is inserted in linked list after {prevData}");
+                    return;
+                }
+                temp = temp.next; // Moving to next node
+            }
+        }
     }
 }
