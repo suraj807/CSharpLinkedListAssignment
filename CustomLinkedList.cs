@@ -59,5 +59,18 @@ namespace LinkedListDataStructureAssignments
                 Console.WriteLine($"{newNode.data} is appended in linked list");
             }
         }
+        public void insertBetween(Node<T> prevNode, T data, Node<T> nextNode)
+        {
+            if (prevNode == null && nextNode == null) //Check if the given Node is null
+            {
+                Console.WriteLine("The given previous node and next node cannot be null");
+                return;
+            }
+            Node<T> newNode = new Node<T>(data); // Allocate the Node & Put in the data          
+            newNode.next = nextNode; // Make next of new Node as next of prev_node
+            prevNode.next = newNode; //make next of prev_node as new_node
+            head = prevNode;
+            Console.WriteLine($"{newNode.data} is inserted between {prevNode.data} and {nextNode.data} in linked list");
+        }
     }
 }
