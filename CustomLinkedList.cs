@@ -24,20 +24,22 @@ namespace LinkedListDataStructureAssignments
         }
         public void DisplayElement() // creating generic method to display element at first of linked list
         {
+            int count = 0;
+            Node<T> temp = this.head; // taking head as temp node
+            if (temp == null) // If head is null that means linked list is empty
             {
-                Node<T> temp = this.head; // taking head as temp node
-                if (temp == null) // If head is null that means linked list is empty
-                {
-                    Console.WriteLine("\nThe LinledList is Empty");
-                    return;
-                }
-                Console.WriteLine("\nElements of linked list in sequence are : ");
-                while (temp != null) // If head is not null then print one by one element of linked list
-                {
-                    Console.WriteLine(temp.data + " ");
-                    temp = temp.next; // Go to next node
-                }
+                Console.WriteLine("\nThe LinledList is Empty");
+                return;
             }
+            Console.WriteLine("\nElements of linked list in sequence are : ");
+            while (temp != null) // If head is not null then print one by one element of linked list
+            {
+                Console.WriteLine(temp.data + " ");
+                count++;
+                temp = temp.next; // Go to next node
+            }
+            Console.WriteLine($"Size of Linked List is : {count}");
+
         }
         public void Append(T data) // creating generic method to Add element at first of linked list
         {
@@ -130,19 +132,42 @@ namespace LinkedListDataStructureAssignments
                 Console.WriteLine("\nLinked List is Empty");
                 return;
             }
-            Node<T> newNode = new Node<T>(newElement);
+            Node<T> newNode = new Node<T>(newElement); // Creating a node having new value
 
             while (temp != null)
             {
                 if (prevData.Equals(temp.data)) // Comparing linked list data to check that element is present or not
                 {
-                    newNode.next = temp.next;
-                    temp.next = newNode;
+                    newNode.next = temp.next; // pointing new node to next element
+                    temp.next = newNode; // Pointing prev node to new node
                     Console.WriteLine($"\n{newNode.data} is inserted in linked list after {prevData}");
                     return;
                 }
                 temp = temp.next; // Moving to next node
             }
+        }
+        public void DeleteElement(T newElement)
+        {
+            Node<T> temp = this.head; // Creating a temp node having head reference
+            Node<T> prev = null; // Declaring variable to store the prev node 
+            if (temp == null) //Checking that list is empty or not
+            {
+                Console.WriteLine("\nLinked List is Empty");
+                return;
+            }
+            if (temp != null && newElement.Equals(temp.data)) // Checking if list has only one value which user wants to delete
+            {
+                Console.WriteLine($"\n{newElement} is deleted");
+                head = temp.next; // Changing head reference
+                return;
+            }
+            while (temp != null && !(newElement.Equals(temp.data))) // Continue moving till find a value which want to dlete
+            {
+                prev = temp; // Stoting value one by one in prev
+                temp = temp.next; // Go to next node
+            }
+            prev.next = temp.next; // Deleting node which want to delete
+            Console.WriteLine($"\n{newElement} is deleted");
         }
     }
 }

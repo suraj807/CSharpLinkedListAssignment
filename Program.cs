@@ -18,6 +18,8 @@ namespace LinkedListDataStructureAssignments
             list.Search(30); // Calling method of CustomLinkedList generic class to search element in linkedlist
             list.InsertElement(30, 40);
             list.DisplayElement();
+            list.DeleteElement(40);
+            list.DisplayElement();
             Console.ReadLine();
         }
     }
